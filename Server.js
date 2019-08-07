@@ -1,4 +1,4 @@
-﻿const express = require('express');
+const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const sql = require("mssql")
@@ -74,7 +74,7 @@ app.get('/employee', (req, res) => {
 
 app.get('/Employee/:id', (req, res) => {
 
-    mysqlConnection.query(
+    sqlconnect.query(
 
         'SELECT * FROM Employee WHERE ID =?',
 
@@ -98,7 +98,7 @@ app.get('/Employee/:id', (req, res) => {
 
 app.delete('/Employee/:id', (req, res) => {
 
-    mysqlConnection.query(
+    sqlconnect.query(
 
         'DELETE FROM Employee WHERE ID =?',
 
@@ -122,17 +122,17 @@ app.delete('/Employee/:id', (req, res) => {
 
 app.post('/Employee', (req, res) => {
 
-    let emp = req.body;
+    let Emp = req.body;
 
-    emp.EmpID = 0;
+    Emp.ID = 0;
 
     let sql = 'SET @ID = ?;SET @FirstName = ?;SET @LastName = ?; @ManagerId = ?; @DepartmentId = ?;SET @Salary = ?; @HireDate = ?; \
 
-    CALL EmployeeAddOrEdit(@ID, @FirstName, @LastName,@FirstName,@ManagerID,@DepartmentId, @Salary,@HireDate); ';
+    CALL EmployeeAddOrEdit(@ID, @FirstName, @LastName,@ManagerId,@DepartmentId, @Salary,@HireDate); ';
 
-mysqlConnection.query(
+sqlconnect.query(
 
-    sql, [emp.EmpID, emp.Name, emp.EmpCode, emp.Salary],
+    sql, [Emp.ID, Emp.FirstName,Emp.LastName,Emp.ManagerId,Emp.DepartmentId,Emp.Salary,Emp.HireDate],
 
     (err, rows, field) => {
 
@@ -152,15 +152,15 @@ mysqlConnection.query(
 
 app.put('/Employee', (req, res) => {
 
-    let emp = req.body;
+    let Emp = req.body;
 
     let sql = 'SET @EmpID = ?;SET @Name = ?;SET @EmpCode = ?;SET @Salary = ?; \
 
-    CALL EmployeeAddOrEdit(@ID, @FirstName, @LastName, @FirstName, @ManagerID, @DepartmentId, @Salary, @HireDate); ';
+    CALL EmployeeAddOrEdit(@ID, @FirstName, @LastName, @ManagerId, @DepartmentId, @Salary, @HireDate); ';
 
-mysqlConnection.query(
+sqlconnect.query(
 
-    sql, [emp.EmpID, emp.Name, emp.EmpCode, emp.Salary],
+    sql, [Emp.ID, Emp.FirstName,Emp.LastName,Emp.ManagerId,Emp.DepartmentId,Emp.Salary,Emp.HireDate],
 
     (err, rows, field) => {
 
@@ -173,4 +173,3 @@ mysqlConnection.query(
 );
 
 });
-*/
