@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon Server.js",
     "heroku-postbuild": "cd ClientApp && npm install && npm run build",
-    "push": "git add . && git commit -m 'build' && git push origin"
+    "push": "git add . && git commit -m 'build'"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "keywords": [
     "heroku"
   ],
-  "author": "Mohommad Jinnah",
+  "author": "Mohammad Jinnah",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Jinn11/ReactCrud/issues"
