@@ -6,18 +6,23 @@ const port = process.env.PORT || 5000
 const path = require ('path')
 
 
+app.use(morgan('dev'))
 
-app.get('/', (req,res) =>{
+app.use(express.json());
 
-    const config = {
-        server: 'DESKTOP-Q29DMOC\SQLEXPRESS',
-        // user: 'TWStudent',
-        //password: 'TechWorks!',
-        database: 'Admin',
-        port: "1433",
-        multipleStatements: true
-    }
-   })
+app.use(express.urlencoded({ extended: true }));
+
+// app.get('/', (req,res) =>{
+
+//     const config = {
+//         server: 'DESKTOP-Q29DMOC\SQLEXPRESS',
+//         // user: 'TWStudent',
+//         //password: 'TechWorks!',
+//         database: 'Admin',
+//         port: "1433",
+//         multipleStatements: true
+//     }
+//    })
 
 
 // sql.connect(config, function (err) {
@@ -40,15 +45,10 @@ app.get('/', (req,res) =>{
 
 //Middleware
 
-app.use(morgan('dev'))
-
-app.use(express.json());
-
-app.use(express.urlencoded({ extended: true }));
 
 
 
-const server = app.listen(port, () => {
+ app.listen(port, () => {
 
     console.log('Server Started');
 
