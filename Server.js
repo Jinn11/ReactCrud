@@ -55,7 +55,7 @@ const server = app.listen(port, () => {
 });
 
 if(process.env.NODE_ENV==="production"){
-    app.use(express.static("clientApp/build"))
+    app.use(express.static("ClientApp/build"))
 
     app.get("*",(req,res)=>{
         res.sendFile(path.resolve(__dirname,"ClientApp/build"))
