@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon Server.js",
     "heroku-postbuild": "cd ClientApp && npm install && npm run build",
-    "push": "git add . && git commit -m 'build'"
+    "push": "git add . && git commit -m 'build' && git push"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Jinn11/ReactCrud#readme",
   "dependencies": {
     "axios": "^0.19.0",
+    "eslint": "^6.1.0",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
     "mssql": "^5.1.0",
