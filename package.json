@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon Server.js",
-    "heroku-postbuild": "cd clientApp && npm install && npm build",
+    "heroku-postbuild": "cd ClientApp && npm install && npm build",
     "push": "git add . && git commit -m 'build' && git push origin"
   },
   "repository": {
