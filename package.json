@@ -5,7 +5,9 @@
   "main": "Server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon Server.js",
+    "heroku-postbuild": "cd clientApp && npm install && npm build",
+    "push": "git add . && git commit -m 'build' && git push origin"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
     "axios": "^0.19.0",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
+    "mssql": "^5.1.0",
     "nodemon": "^1.19.1"
   }
 }

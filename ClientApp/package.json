@@ -1,6 +1,5 @@
 {
-  "homepage":"https://Jinn11.github.io/ReactCrud",
-  "name": "ReactCrud",
+  "name": "reactcrud",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -29,9 +28,7 @@
     "extends": "react-app"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "rimraf ./build && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

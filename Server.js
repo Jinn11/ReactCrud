@@ -2,43 +2,44 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const sql = require("mssql")
+const port = process.env.PORT || 5000
 
 
 
 app.get('/', (req,res) =>{
 
     const config = {
-        sever: 'DESKTOP-Q29DMOC\SQLEXPRESS',
+        server: 'DESKTOP-Q29DMOC\SQLEXPRESS',
         // user: 'TWStudent',
         //password: 'TechWorks!',
         database: 'Admin',
         port: "1433",
         multipleStatements: true
     }
-   }
+   })
 
 
-sql.connect(config, function (err) {
+// sql.connect(config, function (err) {
 
-    if (err) console.log(err);
+//     if (err) console.log(err);
 
-    const request = new sql.Request()
+//     const request = new sql.Request()
 
-       request.query('select * from Employee', function (err, recordset) {
+//        request.query('select * from Employee', function (err, recordset) {
 
-        if(err) console.log(err)
+//         if(err) console.log(err)
 
-        res.send(recordset);
+//         res.send(recordset);
 
-        });
-    });
-});
+//         });
+//     });
+// });
 
 
 
 //Middleware
 
-app.use(morgan('dev'));
+app.use(morgan('dev'))
 
 app.use(express.json());
 
@@ -46,12 +47,19 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-const server = app.listen(5000, () => {
+const server = app.listen(port, () => {
 
     console.log('Server Started');
 
 });
 
+if(process.env.NODE_ENV==="production"){
+    app.use(express.static("clientApp/build"))
+
+    app.get("*",(req,res)=>{
+        res.sendFile(path.resolve(__dirname,"clientApp","build"))
+    })
+}
 
 
 //Get all employees
@@ -120,56 +128,54 @@ app.delete('/Employee/:id', (req, res) => {
 
 //Insert an employee
 
-app.post('/Employee', (req, res) => {
+// app.post('/Employee', (req, res) => {
 
-    let Emp = req.body;
+//     let Emp = req.body;
 
-    Emp.ID = 0;
+//     Emp.ID = 0;
 
-    let sql = 'SET @ID = ?;SET @FirstName = ?;SET @LastName = ?; @ManagerId = ?; @DepartmentId = ?;SET @Salary = ?; @HireDate = ?; \
+//     // let sql = "SET @ID = ?;SET @FirstName = ?;SET @LastName = ?; @ManagerId = ?; @DepartmentId = ?;SET @Salary = ?; @HireDate = ?; \CALL EmployeeAddOrEdit(@ID, @FirstName, @LastName,@ManagerId,@DepartmentId, @Salary,@HireDate);"
 
-    CALL EmployeeAddOrEdit(@ID, @FirstName, @LastName,@ManagerId,@DepartmentId, @Salary,@HireDate); ';
+// sqlconnect.query(
 
-sqlconnect.query(
+//     sql, [Emp.ID, Emp.FirstName,Emp.LastName,Emp.ManagerId,Emp.DepartmentId,Emp.Salary,Emp.HireDate],
 
-    sql, [Emp.ID, Emp.FirstName,Emp.LastName,Emp.ManagerId,Emp.DepartmentId,Emp.Salary,Emp.HireDate],
+//     (err, rows, field) => {
 
-    (err, rows, field) => {
+//         if (!err) res.json("Added Successfully");
 
-        if (!err) res.json("Added Successfully");
+//         else console.log(err);
 
-        else console.log(err);
+//     }
 
-    }
+// );
 
-);
-
-});
+// });
 
 
 
-//Update an employee
+// Update an employee
 
-app.put('/Employee', (req, res) => {
+// app.put('/Employee', (req, res) => {
 
-    let Emp = req.body;
+//     let Emp = req.body;
 
-    let sql = 'SET @EmpID = ?;SET @Name = ?;SET @EmpCode = ?;SET @Salary = ?; \
+//     let sql = 'SET @EmpID = ?;SET @Name = ?;SET @EmpCode = ?;SET @Salary = ?; \
 
-    CALL EmployeeAddOrEdit(@ID, @FirstName, @LastName, @ManagerId, @DepartmentId, @Salary, @HireDate); ';
+//     CALL EmployeeAddOrEdit(@ID, @FirstName, @LastName, @ManagerId, @DepartmentId, @Salary, @HireDate); ';
 
-sqlconnect.query(
+// sqlconnect.query(
 
-    sql, [Emp.ID, Emp.FirstName,Emp.LastName,Emp.ManagerId,Emp.DepartmentId,Emp.Salary,Emp.HireDate],
+//     sql, [Emp.ID, Emp.FirstName,Emp.LastName,Emp.ManagerId,Emp.DepartmentId,Emp.Salary,Emp.HireDate],
 
-    (err, rows, field) => {
+//     (err, rows, field) => {
 
-        if (!err) res.send("Updated Successfully");
+//         if (!err) res.send("Updated Successfully");
 
-        else console.log(err);
+//         else console.log(err);
 
-    }
+//     }
 
-);
+// );
 
-});
+// });
