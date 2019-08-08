@@ -87,7 +87,7 @@ export class Employee extends Component {
                         })}
                     </ul>
                     <form>
-                        <input name="Name" Placeholder="enter employee name :)" onChange={this.handleChange} />
+                        <input name="Name" Placeholder="Enter Employee Name :" onChange={this.handleChange} />
                     </form>
                 </div>
             )
