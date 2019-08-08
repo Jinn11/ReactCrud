@@ -24,7 +24,7 @@
   "homepage": "https://github.com/Jinn11/ReactCrud#readme",
   "dependencies": {
     "axios": "^0.19.0",
-    "eslint": "^6.1.0",
+    "eslint": "^5.16.0",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
     "mssql": "^5.1.0",
