@@ -12,17 +12,17 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-// app.get('/', (req,res) =>{
+app.get('/', (req,res) =>{
 
-//     const config = {
-//         server: 'DESKTOP-Q29DMOC\SQLEXPRESS',
-//         // user: 'TWStudent',
-//         //password: 'TechWorks!',
-//         database: 'Admin',
-//         port: "1433",
-//         multipleStatements: true
-//     }
-//    })
+    const config = {
+        server: 'DESKTOP-Q29DMOC\SQLEXPRESS',
+        // user: 'TWStudent',
+        //password: 'TechWorks!',
+        database: 'Admin',
+        port: "1433",
+        multipleStatements: true
+    }
+   })
 
 
 // sql.connect(config, function (err) {
